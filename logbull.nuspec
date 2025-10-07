@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>logbull</id>
+    <version>0.0.1</version>
+    <authors>logbull</authors>
+    <owners>logbull</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/logbull/logbull-net</projectUrl>
+    <description>Logbull - Advanced logging library for .NET (placeholder package for name reservation)</description>
+    <summary>Logbull logging library for .NET</summary>
+    <tags>logging log logbull</tags>
+    <repository type="git" url="https://github.com/logbull/logbull-net" />
+    <readme>README.md</readme>
+  </metadata>
+  <files>
+    <file src="README.md" target="" />
+  </files>
+</package>
