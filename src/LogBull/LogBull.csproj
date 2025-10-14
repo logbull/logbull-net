@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <PackageId>LogBull</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Rostislav Dugin</Authors>
+    <Company>LogBull</Company>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Description>LogBull client library for .NET with support for standalone logging, Microsoft.Extensions.Logging, and Serilog</Description>
+    <PackageProjectUrl>https://github.com/logbull/logbull</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/logbull/logbull</RepositoryUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
+    <LangVersion>10.0</LangVersion>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="6.0.*" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.*" />
+    <PackageReference Include="Serilog" Version="2.12.*" />
+  </ItemGroup>
+</Project>
+
