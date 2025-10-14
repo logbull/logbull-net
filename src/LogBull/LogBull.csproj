@@ -7,8 +7,8 @@
     <Company>LogBull</Company>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>LogBull client library for .NET with support for standalone logging, Microsoft.Extensions.Logging, and Serilog</Description>
-    <PackageProjectUrl>https://github.com/logbull/logbull</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/logbull/logbull</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/logbull/logbull-net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/logbull/logbull-net</RepositoryUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
