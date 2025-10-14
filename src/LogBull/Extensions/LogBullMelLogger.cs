@@ -40,10 +40,15 @@ public class LogBullMelLogger : ILogger
     /// <typeparam name="TState">The type of the state.</typeparam>
     /// <param name="state">The state.</param>
     /// <returns>A disposable scope.</returns>
-    public IDisposable? BeginScope<TState>(TState state) where TState : notnull
+    public IDisposable BeginScope<TState>(TState state)
     {
         // Scope support can be added if needed
-        return null;
+        return new NoOpDisposable();
+    }
+
+    private class NoOpDisposable : IDisposable
+    {
+        public void Dispose() { }
     }
 
     /// <summary>
@@ -116,17 +121,17 @@ public class LogBullMelLogger : ILogger
         }
     }
 
-    private LogLevel ConvertLogLevel(Microsoft.Extensions.Logging.LogLevel logLevel)
+    private Core.LogLevel ConvertLogLevel(Microsoft.Extensions.Logging.LogLevel logLevel)
     {
         return logLevel switch
         {
-            Microsoft.Extensions.Logging.LogLevel.Trace => LogLevel.DEBUG,
-            Microsoft.Extensions.Logging.LogLevel.Debug => LogLevel.DEBUG,
-            Microsoft.Extensions.Logging.LogLevel.Information => LogLevel.INFO,
-            Microsoft.Extensions.Logging.LogLevel.Warning => LogLevel.WARNING,
-            Microsoft.Extensions.Logging.LogLevel.Error => LogLevel.ERROR,
-            Microsoft.Extensions.Logging.LogLevel.Critical => LogLevel.CRITICAL,
-            _ => LogLevel.INFO
+            Microsoft.Extensions.Logging.LogLevel.Trace => Core.LogLevel.DEBUG,
+            Microsoft.Extensions.Logging.LogLevel.Debug => Core.LogLevel.DEBUG,
+            Microsoft.Extensions.Logging.LogLevel.Information => Core.LogLevel.INFO,
+            Microsoft.Extensions.Logging.LogLevel.Warning => Core.LogLevel.WARNING,
+            Microsoft.Extensions.Logging.LogLevel.Error => Core.LogLevel.ERROR,
+            Microsoft.Extensions.Logging.LogLevel.Critical => Core.LogLevel.CRITICAL,
+            _ => Core.LogLevel.INFO
         };
     }
 
