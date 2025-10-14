@@ -66,7 +66,7 @@ public class MelIntegrationTests
                 configBuilder
                     .WithProjectId("12345678-1234-1234-1234-123456789012")
                     .WithHost("http://localhost:4005")
-                    .WithLogLevel(LogLevel.DEBUG);
+                    .WithLogLevel(LogBull.Core.LogLevel.DEBUG);
             });
         });
 
@@ -103,7 +103,7 @@ public class MelIntegrationTests
         var config = Config.CreateBuilder()
             .WithProjectId("12345678-1234-1234-1234-123456789012")
             .WithHost("http://localhost:4005")
-            .WithLogLevel(LogLevel.DEBUG)
+            .WithLogLevel(LogBull.Core.LogLevel.DEBUG)
             .Build();
 
         var loggerFactory = LoggerFactory.Create(builder =>
