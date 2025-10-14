@@ -76,9 +76,10 @@ public class LogBullSink : ILogEventSink, IDisposable
 
             _sender.AddLog(entry);
         }
-        catch
+        catch (Exception ex)
         {
-            // Never throw from log method
+            // Never throw from log method, but report errors
+            Console.Error.WriteLine($"LogBull Serilog Sink: Failed to emit log event: {ex.Message}");
         }
     }
 
