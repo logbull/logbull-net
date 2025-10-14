@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace LogBull.Core;
 
@@ -10,21 +11,25 @@ public class LogBullResponse
     /// <summary>
     /// Gets the number of logs accepted by the server.
     /// </summary>
+    [JsonPropertyName("accepted")]
     public int Accepted { get; set; }
 
     /// <summary>
     /// Gets the number of logs rejected by the server.
     /// </summary>
+    [JsonPropertyName("rejected")]
     public int Rejected { get; set; }
 
     /// <summary>
     /// Gets the response message.
     /// </summary>
+    [JsonPropertyName("message")]
     public string? Message { get; set; }
 
     /// <summary>
     /// Gets the list of rejected logs with error details.
     /// </summary>
+    [JsonPropertyName("errors")]
     public List<RejectedLog>? Errors { get; set; }
 
     /// <summary>
@@ -35,11 +40,13 @@ public class LogBullResponse
         /// <summary>
         /// Gets the index of the rejected log in the batch (0-based).
         /// </summary>
+        [JsonPropertyName("index")]
         public int Index { get; set; }
 
         /// <summary>
         /// Gets the reason for rejection.
         /// </summary>
+        [JsonPropertyName("message")]
         public string Message { get; set; } = string.Empty;
     }
 }

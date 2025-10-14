@@ -9,6 +9,9 @@ public class TimestampGenerator
 {
     private readonly object _lock = new();
     private long _lastTimestampNanos;
+    
+    // Unix epoch in .NET ticks (1970-01-01 00:00:00 UTC)
+    private static readonly long UnixEpochTicks = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks;
 
     /// <summary>
     /// Generates a unique timestamp in RFC3339Nano format.
@@ -18,10 +21,9 @@ public class TimestampGenerator
     {
         lock (_lock)
         {
-            // Get current time in nanoseconds
-            // DateTime.UtcNow.Ticks is in 100-nanosecond intervals
-            var ticks = DateTime.UtcNow.Ticks;
-            var nanoseconds = ticks * 100; // Convert to nanoseconds
+            // Get current time as Unix nanoseconds
+            var currentTicks = DateTime.UtcNow.Ticks - UnixEpochTicks;
+            var nanoseconds = currentTicks * 100; // Convert from 100-nanosecond ticks to nanoseconds
 
             // Ensure monotonicity
             if (nanoseconds <= _lastTimestampNanos)
@@ -36,15 +38,12 @@ public class TimestampGenerator
 
     private string FormatTimestamp(long timestampNanos)
     {
-        // Convert nanoseconds to DateTime
-        // .NET ticks epoch is 0001-01-01, Unix epoch is 1970-01-01
-        var unixEpochTicks = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks;
-        
-        var totalTicks = timestampNanos / 100; // Convert to .NET ticks
-        var ticks = unixEpochTicks + totalTicks;
-        var dateTime = new DateTime(ticks, DateTimeKind.Utc);
-
+        // Split Unix nanoseconds into seconds and remaining nanoseconds
+        var seconds = timestampNanos / 1_000_000_000;
         var nanos = timestampNanos % 1_000_000_000;
+        
+        // Convert Unix seconds to DateTime
+        var dateTime = DateTimeOffset.FromUnixTimeSeconds(seconds).UtcDateTime;
         
         // Format as RFC3339Nano: 2025-01-15T10:30:45.123456789Z
         return $"{dateTime:yyyy-MM-ddTHH:mm:ss}.{nanos:D9}Z";

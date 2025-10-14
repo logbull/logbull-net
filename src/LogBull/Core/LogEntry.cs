@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace LogBull.Core;
 
@@ -10,21 +11,25 @@ public record LogEntry
     /// <summary>
     /// Gets the log level.
     /// </summary>
+    [JsonPropertyName("level")]
     public string Level { get; init; } = string.Empty;
 
     /// <summary>
     /// Gets the log message.
     /// </summary>
+    [JsonPropertyName("message")]
     public string Message { get; init; } = string.Empty;
 
     /// <summary>
     /// Gets the timestamp in RFC3339Nano format.
     /// </summary>
+    [JsonPropertyName("timestamp")]
     public string Timestamp { get; init; } = string.Empty;
 
     /// <summary>
     /// Gets the custom fields associated with this log entry.
     /// </summary>
+    [JsonPropertyName("fields")]
     public Dictionary<string, object> Fields { get; init; } = new();
 
     /// <summary>

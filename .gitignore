@@ -58,3 +58,6 @@ artifacts/
 # macOS
 .DS_Store
 
+# Test directories
+test-output/
+
