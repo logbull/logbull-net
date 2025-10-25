@@ -38,7 +38,7 @@ public class LogLevelTests
     public void TestPriorityOrdering()
     {
         var levels = new[] { LogLevel.DEBUG, LogLevel.INFO, LogLevel.WARNING, LogLevel.ERROR, LogLevel.CRITICAL };
-        
+
         for (int i = 0; i < levels.Length - 1; i++)
         {
             Assert.True(levels[i].GetPriority() < levels[i + 1].GetPriority());

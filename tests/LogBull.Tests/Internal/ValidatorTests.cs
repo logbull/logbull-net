@@ -12,7 +12,7 @@ public class ValidatorTests
     [Fact]
     public void TestValidProjectId()
     {
-        var exception = Record.Exception(() => 
+        var exception = Record.Exception(() =>
             _validator.ValidateProjectId("12345678-1234-1234-1234-123456789012"));
         Assert.Null(exception);
     }
@@ -20,21 +20,21 @@ public class ValidatorTests
     [Fact]
     public void TestInvalidProjectIdFormat()
     {
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateProjectId("invalid"));
     }
 
     [Fact]
     public void TestEmptyProjectId()
     {
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateProjectId(""));
     }
 
     [Fact]
     public void TestValidHttpUrl()
     {
-        var exception = Record.Exception(() => 
+        var exception = Record.Exception(() =>
             _validator.ValidateHostUrl("http://localhost:4005"));
         Assert.Null(exception);
     }
@@ -42,7 +42,7 @@ public class ValidatorTests
     [Fact]
     public void TestValidHttpsUrl()
     {
-        var exception = Record.Exception(() => 
+        var exception = Record.Exception(() =>
             _validator.ValidateHostUrl("https://logbull.example.com"));
         Assert.Null(exception);
     }
@@ -50,21 +50,21 @@ public class ValidatorTests
     [Fact]
     public void TestInvalidUrlScheme()
     {
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateHostUrl("ftp://example.com"));
     }
 
     [Fact]
     public void TestEmptyUrl()
     {
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateHostUrl(""));
     }
 
     [Fact]
     public void TestValidApiKey()
     {
-        var exception = Record.Exception(() => 
+        var exception = Record.Exception(() =>
             _validator.ValidateApiKey("abc123_xyz-789.test"));
         Assert.Null(exception);
     }
@@ -72,21 +72,21 @@ public class ValidatorTests
     [Fact]
     public void TestShortApiKey()
     {
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateApiKey("short"));
     }
 
     [Fact]
     public void TestInvalidApiKeyCharacters()
     {
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateApiKey("invalid@key!"));
     }
 
     [Fact]
     public void TestNullApiKey()
     {
-        var exception = Record.Exception(() => 
+        var exception = Record.Exception(() =>
             _validator.ValidateApiKey(null));
         Assert.Null(exception);
     }
@@ -94,7 +94,7 @@ public class ValidatorTests
     [Fact]
     public void TestValidLogMessage()
     {
-        var exception = Record.Exception(() => 
+        var exception = Record.Exception(() =>
             _validator.ValidateLogMessage("This is a valid log message"));
         Assert.Null(exception);
     }
@@ -102,7 +102,7 @@ public class ValidatorTests
     [Fact]
     public void TestEmptyLogMessage()
     {
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateLogMessage(""));
     }
 
@@ -110,7 +110,7 @@ public class ValidatorTests
     public void TestTooLongLogMessage()
     {
         var longMessage = new string('a', 10_001);
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateLogMessage(longMessage));
     }
 
@@ -123,7 +123,7 @@ public class ValidatorTests
             { "action", "login" }
         };
 
-        var exception = Record.Exception(() => 
+        var exception = Record.Exception(() =>
             _validator.ValidateLogFields(fields));
         Assert.Null(exception);
     }
@@ -137,7 +137,7 @@ public class ValidatorTests
             fields[$"field_{i}"] = i;
         }
 
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateLogFields(fields));
     }
 
@@ -145,18 +145,18 @@ public class ValidatorTests
     public void TestEmptyFieldKey()
     {
         var fields = new Dictionary<string, object> { { "", "value" } };
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateLogFields(fields));
     }
 
     [Fact]
     public void TestTooLongFieldKey()
     {
-        var fields = new Dictionary<string, object> 
-        { 
-            { new string('a', 101), "value" } 
+        var fields = new Dictionary<string, object>
+        {
+            { new string('a', 101), "value" }
         };
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             _validator.ValidateLogFields(fields));
     }
 }

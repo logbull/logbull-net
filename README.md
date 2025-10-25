@@ -66,9 +66,10 @@ logger.Info("User logged in successfully", new Dictionary<string, object>
     { "ip", "192.168.1.100" }
 });
 
-// Ensure all logs are sent before exiting
+// We need to wait a bit in short-living programs when logs
+// received by Log Bull. This is not needed in production
 logger.Flush();
-await Task.Delay(2000);
+await Task.Delay(3000);
 logger.Dispose();
 ```
 
@@ -114,9 +115,10 @@ sessionLogger.Info("Processing request", new Dictionary<string, object>
     { "action", "purchase" }
 });
 
-// Ensure all logs are sent before exiting
+// We need to wait a bit in short-living programs when logs
+// received by Log Bull. This is not needed in production
 logger.Flush();
-await Task.Delay(2000);
+await Task.Delay(3000);
 logger.Dispose();
 ```
 
@@ -158,6 +160,11 @@ transactionLogger.Info("Transaction completed", new Dictionary<string, object>
     { "currency", "USD" }
 });
 // Includes all previous context + new transaction context
+
+// We need to wait a bit in short-living programs when logs
+// received by Log Bull. This is not needed in production
+logger.Flush();
+await Task.Delay(3000);
 ```
 
 ### 2. Microsoft.Extensions.Logging Integration
@@ -262,7 +269,8 @@ Log.Error("Payment failed for order {OrderId} with amount {Amount} {Currency}",
 Log.Information("Request processed {@Request}",
     new { Method = "POST", Path = "/api/users", StatusCode = 201 });
 
-// Don't forget to flush on application shutdown
+// We need to wait a bit in short-living programs when logs
+// received by Log Bull. This is not needed in production
 Log.CloseAndFlush();
 ```
 

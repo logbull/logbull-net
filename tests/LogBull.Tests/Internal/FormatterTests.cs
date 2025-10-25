@@ -66,7 +66,7 @@ public class FormatterTests
         };
 
         var ensured = _formatter.EnsureFields(fields);
-        Assert.Equal(1, ensured.Count);
+        Assert.Single(ensured);
         Assert.True(ensured.ContainsKey("valid"));
     }
 
@@ -97,7 +97,7 @@ public class FormatterTests
     {
         var additionalFields = new Dictionary<string, object> { { "a", 1 } };
         var merged = _formatter.MergeFields(null, additionalFields);
-        Assert.Equal(1, merged.Count);
+        Assert.Single(merged);
         Assert.Equal(1, merged["a"]);
     }
 
@@ -106,7 +106,7 @@ public class FormatterTests
     {
         var baseFields = new Dictionary<string, object> { { "a", 1 } };
         var merged = _formatter.MergeFields(baseFields, null);
-        Assert.Equal(1, merged.Count);
+        Assert.Single(merged);
         Assert.Equal(1, merged["a"]);
     }
 }

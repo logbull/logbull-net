@@ -32,7 +32,7 @@ public static class LogBullLoggerExtensions
         var configBuilder = Config.CreateBuilder();
         configure(configBuilder);
         var config = configBuilder.Build();
-        
+
         return builder.AddLogBull(config);
     }
 }

@@ -37,7 +37,7 @@ public class LogBullLoggerTests
     [Fact]
     public void TestInvalidProjectId()
     {
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             LogBullLogger.CreateBuilder()
                 .WithProjectId("invalid")
                 .WithHost("http://localhost:4005")
@@ -47,7 +47,7 @@ public class LogBullLoggerTests
     [Fact]
     public void TestInvalidHost()
     {
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
             LogBullLogger.CreateBuilder()
                 .WithProjectId("12345678-1234-1234-1234-123456789012")
                 .WithHost("invalid")

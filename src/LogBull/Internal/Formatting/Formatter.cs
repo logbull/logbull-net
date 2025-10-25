@@ -78,7 +78,7 @@ public class Formatter
         Dictionary<string, object>? additionalFields)
     {
         var result = new Dictionary<string, object>(EnsureFields(baseFields));
-        
+
         foreach (var entry in EnsureFields(additionalFields))
         {
             result[entry.Key] = entry.Value;

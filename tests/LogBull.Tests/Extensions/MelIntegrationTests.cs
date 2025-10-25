@@ -31,7 +31,7 @@ public class MelIntegrationTests
 
         var provider = new LogBullLoggerProvider(config);
         var logger = provider.CreateLogger("TestCategory");
-        
+
         Assert.NotNull(logger);
         provider.Dispose();
     }
@@ -92,7 +92,7 @@ public class MelIntegrationTests
         });
 
         var logger = loggerFactory.CreateLogger<MelIntegrationTests>();
-        
+
         logger.LogInformation("User {UserId} performed action {Action}", "12345", "login");
         loggerFactory.Dispose();
     }
